@@ -1,0 +1,87 @@
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
+import { Link, useNavigate } from 'react-router-dom';
+
+function TopNav() {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const linkElement = document.createElement('link');
+        linkElement.href = 'https://fonts.cdnfonts.com/css/anurati';
+        linkElement.rel = 'stylesheet';
+        document.head.appendChild(linkElement);
+    }, []);
+
+    const NavLinks = [
+        { name: "Home", link: '/' },
+        { name: "About", link: '/About' },
+        { name: "Contacts", link: '/Contacts' }
+        
+    ];
+
+    const handleScrollTo = (sectionId) => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
+    return (
+        
+        <NavContainers>
+            <div className='leftside'>
+
+                <ul className='links'>
+                    {NavLinks.map(({ name, link }) => (
+                        <li key={name}>
+                            {link === '/Experties' || link === '/About' || link === '/SocielMedia'|| link==='/Project' ||link==='/Education'? (
+                                <StyledSpan onClick={() => handleScrollTo(link.substring(1).toLowerCase())}>{name}</StyledSpan>
+                            ) : (
+                                <Link to={link}>{name}</Link>
+                            )}
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </NavContainers>
+    );
+    
+}
+
+
+const NavContainers = styled.div`
+    font-family: 'Anurati', sans-serif;
+    position: fixed;
+    top: 0;
+
+
+    .leftside {
+;
+                }
+            }
+        }
+
+        .links {
+            list-style: none;
+            display: flex;
+: none;
+                    color: white;
+                    transition: color 0.3s ease-in-out;
+
+                    &:hover {
+                        color: #f39c12;
+                    }
+                }
+            }
+        }
+    }
+`;
+
+const StyledSpan = styled.span`
+  cursor: pointer;
+  &:hover {
+                        color: #f39c12;
+                    }
+`;
+
+export default TopNav;
